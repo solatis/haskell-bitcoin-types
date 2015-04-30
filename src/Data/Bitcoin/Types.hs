@@ -1,4 +1,5 @@
 module Data.Bitcoin.Types ( TransactionId
+                          , BlockHash
                           , PrivateKey
                           , Address
                           , Account
@@ -9,12 +10,14 @@ import Control.Applicative ((<$>))
 import Data.Word ( Word64 )
 
 import Data.Binary ( Binary, get, put )
-import Data.Binary.Get ( getWord8
+import Data.Binary.Get ( getByteString
+                       , getWord8
                        , getWord16le
                        , getWord32le
                        , getWord64le )
 
-import Data.Binary.Put ( putWord8
+import Data.Binary.Put ( putByteString
+                       , putWord8
                        , putWord16le
                        , putWord32le
                        , putWord64le )
@@ -24,9 +27,13 @@ import qualified Data.HexString    as HS
 import qualified Data.Base58String as B58S
 import qualified Data.Text         as T
 
--- | Per Bitcoin documentation, An identifier used to uniquely identify a
+-- | Per Bitcoin documentation, an identifier used to uniquely identify a
 --   particular transaction; specifically, the sha256d hash of the transaction.
 type TransactionId = HS.HexString
+
+-- | Per Bitcoin document, an identifier used to uniquely identify a block
+--   by its header.
+type BlockHash = HS.HexString
 
 -- | A base58 private key to sign transactions
 type PrivateKey = B58S.Base58String
