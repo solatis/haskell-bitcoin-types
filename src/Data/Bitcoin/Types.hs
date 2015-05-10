@@ -23,9 +23,9 @@ import Data.Binary.Put ( putByteString
                        , putWord64le )
 
 import           Data.Fixed
-import qualified Data.HexString    as HS
-import qualified Data.Base58String as B58S
-import qualified Data.Text         as T
+import qualified Data.HexString            as HS
+import qualified Data.Base58String.Bitcoin as B58S
+import qualified Data.Text                 as T
 
 -- | Per Bitcoin documentation, an identifier used to uniquely identify a
 --   particular transaction; specifically, the sha256d hash of the transaction.
@@ -54,8 +54,6 @@ instance HasResolution Satoshi where
 
 -- | A single Bitcoin, which represents 10^8 Satoshis.
 type Btc = Fixed Satoshi
-
-
 
 -- | Data type representing a variable length integer. The 'VarInt' type
 --   usually precedes an array or a string that can vary in length.
